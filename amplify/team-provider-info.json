@@ -1,0 +1,31 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-hatenatest-dev-163613-authRole",
+      "UnauthRoleArn": "arn:aws:iam::336395565716:role/amplify-hatenatest-dev-163613-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::336395565716:role/amplify-hatenatest-dev-163613-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-hatenatest-dev-163613-deployment",
+      "UnauthRoleName": "amplify-hatenatest-dev-163613-unauthRole",
+      "StackName": "amplify-hatenatest-dev-163613",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:336395565716:stack/amplify-hatenatest-dev-163613/47e33550-22e2-11ee-a894-0a4a7bfce8c5",
+      "AmplifyAppId": "d19g55acbvr0fm"
+    },
+    "categories": {
+      "auth": {
+        "hatenatest10bea84f": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "hatenateste940de93": {
+          "deploymentBucketName": "amplify-hatenatest-dev-163613-deployment",
+          "s3Key": "amplify-builds/hatenateste940de93-4a2b4c5062796b516974-build.zip"
+        }
+      },
+      "api": {
+        "articleDB": {},
+        "hatenatest": {}
+      }
+    }
+  }
+}

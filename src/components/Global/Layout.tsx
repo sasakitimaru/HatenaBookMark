@@ -5,6 +5,7 @@ import styles from './Layout.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import Modal from '../Modal/Modal'
+import { AmplifyUser } from '@aws-amplify/ui'
 
 export const ModalContext = createContext<{
   modalVisible: boolean
@@ -14,9 +15,15 @@ export const ModalContext = createContext<{
   setModalVisible: () => { }
 })
 
-const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
+interface LayoutProps {
+  children: ReactNode
+  user: AmplifyUser | undefined
+  signOut: (() => void) | undefined
+}
+const Layout: React.FC<LayoutProps> = ({ children, user, signOut }) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [headerHeight, setHeaderHeight] = useState(0)
+  console.log(user)
   return (
     <div style={{ marginTop: headerHeight }}>
       <Head>
@@ -28,11 +35,11 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
         {modalVisible && <Modal />}
       </ModalContext.Provider>
       <Header setHeaderHeight={setHeaderHeight} />
-      <FontAwesomeIcon icon={faPlus} className={styles['plus-icon']} onClick={() => setModalVisible(true)}/>
+      <FontAwesomeIcon icon={faPlus} className={styles['plus-icon']} onClick={() => setModalVisible(true)} />
       <div className={styles['layout-container']}>{children}</div>
       <footer className={styles['layout-footer']}>
         <hr />
-        footer
+        <button onClick={signOut}>Sign Out</button>
       </footer>
     </div>
   )

@@ -1,6 +1,12 @@
 import React from 'react'
 import Layout from '../components/Global/Layout'
 import Article from '../components/Article/Article'
+import { Amplify } from 'aws-amplify';
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import awsExports from '../aws-exports';
+Amplify.configure(awsExports);
+
 interface Article {
   link: string
   title: string
@@ -36,17 +42,21 @@ const page = () => {
   ];
 
   return (
-    <Layout>
-      {articles.map((article, index) => (
-        <div key={index}>
-          <Article
-            link={article.link}
-            title={article.title}
-            liked={article.liked}
-          />
-        </div>
-      ))}
-    </Layout>
+    <Authenticator loginMechanisms={['email']} socialProviders={['apple', 'facebook', 'google']}>
+      {({ signOut, user }) => (
+      <Layout signOut={signOut} user={user}>
+        {articles.map((article, index) => (
+          <div key={index}>
+            <Article
+              link={article.link}
+              title={article.title}
+              liked={article.liked}
+            />
+          </div>
+        ))}
+      </Layout>
+      )}
+    </Authenticator>
   )
 }
 

@@ -1,0 +1,33 @@
+# This "input" configures a global authorization rule to enable public access to
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } 
+type User @model {
+  id: ID!
+  email: String!
+  bookmarks: [Bookmark] @hasMany(indexName: "byUser", fields: ["id"])
+  comments: [Comment] @hasMany(indexName: "byUser", fields: ["id"])
+}
+
+type Article @model {
+  id: ID!
+  title: String!
+  link: String!
+  comments: [Comment] @hasMany(indexName: "byArticle", fields: ["id"])
+  bookmarks: [Bookmark] @hasMany(indexName: "byArticle", fields: ["id"])
+}
+
+type Comment @model {
+  id: ID!
+  content: String!
+  userId: ID! @index(name: "byUser", sortKeyFields: ["articleId"])
+  user: User @belongsTo(fields: ["userId"])
+  articleId: ID! @index(name: "byArticle", sortKeyFields: ["userId"])
+  article: Article @belongsTo(fields: ["articleId"])
+}
+
+type Bookmark @model{
+  id: ID!
+  userId: ID! @index(name: "byUser", sortKeyFields: ["articleId"])
+  articleId: ID! @index(name: "byArticle", sortKeyFields: ["userId"])
+  user: User @belongsTo(fields: ["userId"])
+  article: Article @belongsTo(fields: ["articleId"])
+}
