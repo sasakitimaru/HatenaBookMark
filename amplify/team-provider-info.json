@@ -20,6 +20,10 @@
         "hatenateste940de93": {
           "deploymentBucketName": "amplify-hatenatest-dev-163613-deployment",
           "s3Key": "amplify-builds/hatenateste940de93-4a2b4c5062796b516974-build.zip"
+        },
+        "hatenaAddUserDB": {
+          "deploymentBucketName": "amplify-hatenatest-dev-163613-deployment",
+          "s3Key": "amplify-builds/hatenaAddUserDB-3655424c644c394d3155-build.zip"
         }
       },
       "api": {

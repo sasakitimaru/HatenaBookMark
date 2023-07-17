@@ -26,6 +26,13 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
+    "hatenaAddUserDB": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "hatenateste940de93": {
       "Arn": "string",
       "LambdaExecutionRole": "string",

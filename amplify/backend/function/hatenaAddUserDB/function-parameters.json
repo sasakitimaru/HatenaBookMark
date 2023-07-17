@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "api": {
+      "articleDB": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "hatenatest": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

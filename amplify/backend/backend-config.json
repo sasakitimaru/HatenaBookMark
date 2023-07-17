@@ -15,13 +15,37 @@
       "service": "API Gateway"
     },
     "hatenatest": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "hatenatest10bea84f"
+        }
+      ],
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [],
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authhatenatest10bea84f"
+              }
+            },
+            {
+              "authenticationType": "AWS_LAMBDA",
+              "lambdaAuthorizerConfig": {
+                "lambdaFunction": "graphQlLambdaAuthorizerfcc7dfd0",
+                "ttlSeconds": "300"
+              }
+            }
+          ],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDate": "2023-07-24T04:14:56.528Z",
+              "apiKeyExpirationDays": 7,
+              "description": ""
             },
             "authenticationType": "API_KEY"
           }
@@ -76,6 +100,30 @@
     }
   },
   "function": {
+    "hatenaAddUserDB": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "ApiName",
+            "ApiId"
+          ],
+          "category": "api",
+          "resourceName": "articleDB"
+        },
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "hatenatest"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "hatenateste940de93": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -83,6 +131,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_hatenaAddUserDB_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "hatenaAddUserDB"
+        }
+      ]
+    },
+    "AMPLIFY_function_hatenaAddUserDB_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "hatenaAddUserDB"
+        }
+      ]
+    },
     "AMPLIFY_function_hatenateste940de93_deploymentBucketName": {
       "usedBy": [
         {
