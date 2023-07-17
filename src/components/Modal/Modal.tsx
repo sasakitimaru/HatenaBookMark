@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ModalContext } from '../Global/Layout'
 import { addArticle, addBookMark, addComment } from '@/lib/DynamoAPI'
 import { Auth } from 'aws-amplify'
-import { randomUUID } from 'crypto'
+import { v4 as v4uuid } from 'uuid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
@@ -13,10 +13,11 @@ const Modal = () => {
     const [isSaved, setIsSaved] = useState(false)
     const [url, setUrl] = useState('')
     const [comment, setComment] = useState('')
+    const [title, setTitle] = useState('')
     const handleSubmit = async () => {
         const user = await Auth.currentAuthenticatedUser()
         const email = user.attributes.email
-        const uuid = await String(randomUUID)
+        const uuid = v4uuid()
         console.log(uuid)
         Promise.all([
             addComment(
@@ -24,21 +25,21 @@ const Modal = () => {
                     id: uuid,
                     content: comment,
                     userId: email,
-                    articleId: 'article1'
+                    articleId: url
                 }
             ),
             addBookMark(
                 {
                     id: uuid,
                     userId: email,
-                    articleId: 'article1'
+                    articleId: url
                 }
             ),
-
+            
             addArticle(
                 {
-                    id: uuid,
-                    title: 'test',
+                    id: url,
+                    title: title,
                     link: url
                 }
             )])
@@ -61,6 +62,7 @@ const Modal = () => {
         <div onClick={() => setModalVisible(false)} className={styles['modal-container']}>
             <div onClick={(e) => e.stopPropagation()} className={styles['modal']}>
                 <input className={styles['modal-input']} type="text" placeholder='URL' onChange={(e) => setUrl(e.target.value)} />
+                <input className={styles['modal-input']} type="text" placeholder='Title' onChange={(e) => setTitle(e.target.value)} />
                 <input className={styles['modal-input']} type="text" placeholder='Comment' onChange={(e) => setComment(e.target.value)} />
                 <button className={styles['modal-button']} onClick={handleSubmit}>Submit</button>
             </div>

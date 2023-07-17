@@ -1,63 +1,63 @@
-import React from 'react'
-import Layout from '../components/Global/Layout'
-import Article from '../components/Article/Article'
-import { Amplify } from 'aws-amplify';
-import { Authenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-import awsExports from '../aws-exports';
+import React, { useEffect, useState } from "react";
+import Layout from "../components/Global/Layout";
+import Article from "../components/Article/Article";
+import { API, Amplify, graphqlOperation } from "aws-amplify";
+import { Authenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
+import awsExports from "../aws-exports";
+import { bookmarksByUserIdAndArticleId } from "@/graphql/queries";
 Amplify.configure(awsExports);
 
 interface Article {
-  link: string
-  title: string
-  liked: number
+  id: string;
+  link: string;
+  title: string;
 }
-const page = () => {
-  const articles: Article[] = [
-    {
-      link: "https://example.com/article1",
-      title: "Article 1",
-      liked: 10
-    },
-    {
-      link: "https://example.com/article2",
-      title: "Article 2",
-      liked: 15
-    },
-    {
-      link: "https://example.com/article3",
-      title: "Article 3",
-      liked: 20
-    },
-    {
-      link: "https://example.com/article4",
-      title: "Article 4",
-      liked: 25
-    },
-    {
-      link: "https://example.com/article5",
-      title: "Article 5",
-      liked: 30
-    }
-  ];
-
+const HomePage = () => {
+  const [articles, setArticles] = useState<Article[]>([]);
+  useEffect(() => {
+    const getArticles = async () => {
+      const response: any = await API.graphql(
+        graphqlOperation(bookmarksByUserIdAndArticleId, {
+          userId: "tom.ok1@icloud.com",
+        })
+      );
+      // console.log('res1:',response.data.bookmarksByUserIdAndArticleId.items);
+      const items = response.data.bookmarksByUserIdAndArticleId.items;
+      items.map((item: { article: Article }) => {
+        setArticles((prev) => [
+          ...prev,
+          {
+            id: item.article.id,
+            title: item.article.title,
+            link: item.article.link,
+          },
+        ]);
+      });
+      // return response.data.bookmarksByUserIdAndArticleId.items;
+    };
+    getArticles();
+  }, []);
   return (
-    <Authenticator loginMechanisms={['email']} socialProviders={['apple', 'facebook', 'google']}>
+    <Authenticator
+      loginMechanisms={["email"]}
+      socialProviders={["apple", "facebook", "google"]}
+    >
       {({ signOut, user }) => (
-      <Layout signOut={signOut} user={user}>
-        {articles.map((article, index) => (
-          <div key={index}>
-            <Article
-              link={article.link}
-              title={article.title}
-              liked={article.liked}
-            />
-          </div>
-        ))}
-      </Layout>
+        <Layout signOut={signOut} user={user}>
+          {articles.map((article, index) => (
+            <div key={index}>
+              <Article
+                link={article.link}
+                title={article.title}
+                liked={10} //仮置き
+              />
+            </div>
+          ))}
+        </Layout>
       )}
     </Authenticator>
-  )
-}
+  );
+};
 
-export default page
+export default HomePage;
