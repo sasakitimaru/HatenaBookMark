@@ -23,7 +23,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, user, signOut }) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [headerHeight, setHeaderHeight] = useState(0)
-  console.log(user)
+  // console.log(user)
   return (
     <div style={{ marginTop: headerHeight }}>
       <Head>

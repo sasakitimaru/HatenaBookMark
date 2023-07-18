@@ -7,6 +7,7 @@ import { Auth } from 'aws-amplify'
 import { v4 as v4uuid } from 'uuid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
+import { ArticleContext } from '@/pages'
 
 const Modal = () => {
     const { setModalVisible } = useContext(ModalContext)
@@ -14,6 +15,8 @@ const Modal = () => {
     const [url, setUrl] = useState('')
     const [comment, setComment] = useState('')
     const [title, setTitle] = useState('')
+    const { articles, setArticles} = useContext(ArticleContext)
+
     const handleSubmit = async () => {
         const user = await Auth.currentAuthenticatedUser()
         const email = user.attributes.email
@@ -44,7 +47,15 @@ const Modal = () => {
                 }
             )])
             .then(response => {
-                console.log(response);
+                // console.log(response);
+                setArticles((prev) => [
+                    ...prev,
+                    {
+                        id: url,
+                        title: title,
+                        link: url,
+                    },
+                ]);
                 setUrl('')
                 setComment('')
                 setIsSaved(true)
