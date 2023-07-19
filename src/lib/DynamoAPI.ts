@@ -4,6 +4,7 @@ interface AddArticleData {
   id: string;
   title: string;
   link: string;
+  liked: number;
 }
 
 interface AddCommentData {

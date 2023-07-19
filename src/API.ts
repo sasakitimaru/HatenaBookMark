@@ -86,6 +86,7 @@ export type Article = {
   id: string,
   title: string,
   link: string,
+  liked: number,
   comments?: ModelCommentConnection | null,
   bookmarks?: ModelBookmarkConnection | null,
   createdAt: string,
@@ -123,20 +124,35 @@ export type CreateArticleInput = {
   id?: string | null,
   title: string,
   link: string,
+  liked: number,
 };
 
 export type ModelArticleConditionInput = {
   title?: ModelStringInput | null,
   link?: ModelStringInput | null,
+  liked?: ModelIntInput | null,
   and?: Array< ModelArticleConditionInput | null > | null,
   or?: Array< ModelArticleConditionInput | null > | null,
   not?: ModelArticleConditionInput | null,
+};
+
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
 };
 
 export type UpdateArticleInput = {
   id: string,
   title?: string | null,
   link?: string | null,
+  liked?: number | null,
 };
 
 export type DeleteArticleInput = {
@@ -228,6 +244,7 @@ export type ModelArticleFilterInput = {
   id?: ModelIDInput | null,
   title?: ModelStringInput | null,
   link?: ModelStringInput | null,
+  liked?: ModelIntInput | null,
   and?: Array< ModelArticleFilterInput | null > | null,
   or?: Array< ModelArticleFilterInput | null > | null,
   not?: ModelArticleFilterInput | null,
@@ -315,8 +332,21 @@ export type ModelSubscriptionArticleFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   title?: ModelSubscriptionStringInput | null,
   link?: ModelSubscriptionStringInput | null,
+  liked?: ModelSubscriptionIntInput | null,
   and?: Array< ModelSubscriptionArticleFilterInput | null > | null,
   or?: Array< ModelSubscriptionArticleFilterInput | null > | null,
+};
+
+export type ModelSubscriptionIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  in?: Array< number | null > | null,
+  notIn?: Array< number | null > | null,
 };
 
 export type ModelSubscriptionCommentFilterInput = {
@@ -467,6 +497,7 @@ export type CreateArticleMutation = {
     id: string,
     title: string,
     link: string,
+    liked: number,
     comments?:  {
       __typename: "ModelCommentConnection",
       items:  Array< {
@@ -508,6 +539,7 @@ export type UpdateArticleMutation = {
     id: string,
     title: string,
     link: string,
+    liked: number,
     comments?:  {
       __typename: "ModelCommentConnection",
       items:  Array< {
@@ -549,6 +581,7 @@ export type DeleteArticleMutation = {
     id: string,
     title: string,
     link: string,
+    liked: number,
     comments?:  {
       __typename: "ModelCommentConnection",
       items:  Array< {
@@ -611,6 +644,7 @@ export type CreateCommentMutation = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -659,6 +693,7 @@ export type UpdateCommentMutation = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -707,6 +742,7 @@ export type DeleteCommentMutation = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -754,6 +790,7 @@ export type CreateBookmarkMutation = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -801,6 +838,7 @@ export type UpdateBookmarkMutation = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -848,6 +886,7 @@ export type DeleteBookmarkMutation = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -941,6 +980,7 @@ export type GetArticleQuery = {
     id: string,
     title: string,
     link: string,
+    liked: number,
     comments?:  {
       __typename: "ModelCommentConnection",
       items:  Array< {
@@ -985,6 +1025,7 @@ export type ListArticlesQuery = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -1031,6 +1072,7 @@ export type GetCommentQuery = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -1074,6 +1116,7 @@ export type ListCommentsQuery = {
         id: string,
         title: string,
         link: string,
+        liked: number,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -1114,6 +1157,7 @@ export type GetBookmarkQuery = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -1156,6 +1200,7 @@ export type ListBookmarksQuery = {
         id: string,
         title: string,
         link: string,
+        liked: number,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -1196,6 +1241,7 @@ export type CommentsByUserIdAndArticleIdQuery = {
         id: string,
         title: string,
         link: string,
+        liked: number,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -1236,6 +1282,7 @@ export type CommentsByArticleIdAndUserIdQuery = {
         id: string,
         title: string,
         link: string,
+        liked: number,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -1275,6 +1322,7 @@ export type BookmarksByUserIdAndArticleIdQuery = {
         id: string,
         title: string,
         link: string,
+        liked: number,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -1314,6 +1362,7 @@ export type BookmarksByArticleIdAndUserIdQuery = {
         id: string,
         title: string,
         link: string,
+        liked: number,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -1451,6 +1500,7 @@ export type OnCreateArticleSubscription = {
     id: string,
     title: string,
     link: string,
+    liked: number,
     comments?:  {
       __typename: "ModelCommentConnection",
       items:  Array< {
@@ -1491,6 +1541,7 @@ export type OnUpdateArticleSubscription = {
     id: string,
     title: string,
     link: string,
+    liked: number,
     comments?:  {
       __typename: "ModelCommentConnection",
       items:  Array< {
@@ -1531,6 +1582,7 @@ export type OnDeleteArticleSubscription = {
     id: string,
     title: string,
     link: string,
+    liked: number,
     comments?:  {
       __typename: "ModelCommentConnection",
       items:  Array< {
@@ -1592,6 +1644,7 @@ export type OnCreateCommentSubscription = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -1639,6 +1692,7 @@ export type OnUpdateCommentSubscription = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -1686,6 +1740,7 @@ export type OnDeleteCommentSubscription = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -1732,6 +1787,7 @@ export type OnCreateBookmarkSubscription = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -1778,6 +1834,7 @@ export type OnUpdateBookmarkSubscription = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,
@@ -1824,6 +1881,7 @@ export type OnDeleteBookmarkSubscription = {
       id: string,
       title: string,
       link: string,
+      liked: number,
       comments?:  {
         __typename: "ModelCommentConnection",
         nextToken?: string | null,

@@ -14,10 +14,8 @@ export const getUser = /* GraphQL */ `
           articleId
           createdAt
           updatedAt
-          __typename
         }
         nextToken
-        __typename
       }
       comments {
         items {
@@ -27,14 +25,11 @@ export const getUser = /* GraphQL */ `
           articleId
           createdAt
           updatedAt
-          __typename
         }
         nextToken
-        __typename
       }
       createdAt
       updatedAt
-      __typename
     }
   }
 `;
@@ -50,18 +45,14 @@ export const listUsers = /* GraphQL */ `
         email
         bookmarks {
           nextToken
-          __typename
         }
         comments {
           nextToken
-          __typename
         }
         createdAt
         updatedAt
-        __typename
       }
       nextToken
-      __typename
     }
   }
 `;
@@ -71,6 +62,7 @@ export const getArticle = /* GraphQL */ `
       id
       title
       link
+      liked
       comments {
         items {
           id
@@ -79,10 +71,8 @@ export const getArticle = /* GraphQL */ `
           articleId
           createdAt
           updatedAt
-          __typename
         }
         nextToken
-        __typename
       }
       bookmarks {
         items {
@@ -91,14 +81,11 @@ export const getArticle = /* GraphQL */ `
           articleId
           createdAt
           updatedAt
-          __typename
         }
         nextToken
-        __typename
       }
       createdAt
       updatedAt
-      __typename
     }
   }
 `;
@@ -113,20 +100,17 @@ export const listArticles = /* GraphQL */ `
         id
         title
         link
+        liked
         comments {
           nextToken
-          __typename
         }
         bookmarks {
           nextToken
-          __typename
         }
         createdAt
         updatedAt
-        __typename
       }
       nextToken
-      __typename
     }
   }
 `;
@@ -141,36 +125,30 @@ export const getComment = /* GraphQL */ `
         email
         bookmarks {
           nextToken
-          __typename
         }
         comments {
           nextToken
-          __typename
         }
         createdAt
         updatedAt
-        __typename
       }
       articleId
       article {
         id
         title
         link
+        liked
         comments {
           nextToken
-          __typename
         }
         bookmarks {
           nextToken
-          __typename
         }
         createdAt
         updatedAt
-        __typename
       }
       createdAt
       updatedAt
-      __typename
     }
   }
 `;
@@ -190,23 +168,20 @@ export const listComments = /* GraphQL */ `
           email
           createdAt
           updatedAt
-          __typename
         }
         articleId
         article {
           id
           title
           link
+          liked
           createdAt
           updatedAt
-          __typename
         }
         createdAt
         updatedAt
-        __typename
       }
       nextToken
-      __typename
     }
   }
 `;
@@ -221,35 +196,29 @@ export const getBookmark = /* GraphQL */ `
         email
         bookmarks {
           nextToken
-          __typename
         }
         comments {
           nextToken
-          __typename
         }
         createdAt
         updatedAt
-        __typename
       }
       article {
         id
         title
         link
+        liked
         comments {
           nextToken
-          __typename
         }
         bookmarks {
           nextToken
-          __typename
         }
         createdAt
         updatedAt
-        __typename
       }
       createdAt
       updatedAt
-      __typename
     }
   }
 `;
@@ -269,22 +238,19 @@ export const listBookmarks = /* GraphQL */ `
           email
           createdAt
           updatedAt
-          __typename
         }
         article {
           id
           title
           link
+          liked
           createdAt
           updatedAt
-          __typename
         }
         createdAt
         updatedAt
-        __typename
       }
       nextToken
-      __typename
     }
   }
 `;
@@ -314,23 +280,20 @@ export const commentsByUserIdAndArticleId = /* GraphQL */ `
           email
           createdAt
           updatedAt
-          __typename
         }
         articleId
         article {
           id
           title
           link
+          liked
           createdAt
           updatedAt
-          __typename
         }
         createdAt
         updatedAt
-        __typename
       }
       nextToken
-      __typename
     }
   }
 `;
@@ -360,23 +323,20 @@ export const commentsByArticleIdAndUserId = /* GraphQL */ `
           email
           createdAt
           updatedAt
-          __typename
         }
         articleId
         article {
           id
           title
           link
+          liked
           createdAt
           updatedAt
-          __typename
         }
         createdAt
         updatedAt
-        __typename
       }
       nextToken
-      __typename
     }
   }
 `;
@@ -406,22 +366,19 @@ export const bookmarksByUserIdAndArticleId = /* GraphQL */ `
           email
           createdAt
           updatedAt
-          __typename
         }
         article {
           id
           title
           link
+          liked
           createdAt
           updatedAt
-          __typename
         }
         createdAt
         updatedAt
-        __typename
       }
       nextToken
-      __typename
     }
   }
 `;
@@ -451,22 +408,19 @@ export const bookmarksByArticleIdAndUserId = /* GraphQL */ `
           email
           createdAt
           updatedAt
-          __typename
         }
         article {
           id
           title
           link
+          liked
           createdAt
           updatedAt
-          __typename
         }
         createdAt
         updatedAt
-        __typename
       }
       nextToken
-      __typename
     }
   }
 `;

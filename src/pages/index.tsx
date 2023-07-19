@@ -12,6 +12,7 @@ interface Article {
   id: string;
   link: string;
   title: string;
+  liked: number;
 }
 export const ArticleContext = createContext<{
   articles: Article[];
@@ -33,16 +34,20 @@ const HomePage = () => {
       );
       // console.log('res1:',response.data.bookmarksByUserIdAndArticleId.items);
       const items = response.data.bookmarksByUserIdAndArticleId.items;
-      items.map((item: { article: Article }) => {
-        setArticles((prev) => [
-          ...prev,
-          {
-            id: item.article.id,
-            title: item.article.title,
-            link: item.article.link,
-          },
-        ]);
-      });
+      console.log(items);
+      items.length !== 0
+        ? items.map((item: { article: Article }) => {
+            setArticles((prev) => [
+              ...prev,
+              {
+                id: item.article.id,
+                title: item.article.title,
+                link: item.article.link,
+                liked: item.article.liked,
+              },
+            ]);
+          })
+        : setArticles([]);
       // return response.data.bookmarksByUserIdAndArticleId.items;
     };
     getArticles();
@@ -55,15 +60,19 @@ const HomePage = () => {
       {({ signOut, user }) => (
         <ArticleContext.Provider value={{ articles, setArticles }}>
           <Layout signOut={signOut} user={user}>
-            {articles.map((article, index) => (
-              <div key={index}>
-                <Article
-                  link={article.link}
-                  title={article.title}
-                  liked={10} //仮置き
-                />
-              </div>
-            ))}
+            {articles.length === 0 ? (
+              <p>ブックマークはありません。+マークから記事を追加しよう！</p>
+            ) : (
+              articles.map((article, index) => (
+                <div key={index}>
+                  <Article
+                    link={article.link}
+                    title={article.title}
+                    liked={article.liked} //仮置き
+                  />
+                </div>
+              ))
+            )}
           </Layout>
         </ArticleContext.Provider>
       )}

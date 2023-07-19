@@ -11,6 +11,7 @@ type Article @model {
   id: ID!
   title: String!
   link: String!
+  liked: Int!
   comments: [Comment] @hasMany(indexName: "byArticle", fields: ["id"])
   bookmarks: [Bookmark] @hasMany(indexName: "byArticle", fields: ["id"])
 }
