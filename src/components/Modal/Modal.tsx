@@ -24,7 +24,7 @@ const Modal = () => {
       graphqlOperation(getArticle, { id: url })
     );
     // console.log("searchedArticle:", referringArticle);
-    let liked = 0;
+    let liked = 1;
     if (referringArticle.data.getArticle) liked = referringArticle.data.getArticle.liked + 1;
     const email = user.attributes.email;
     const uuid = v4uuid();

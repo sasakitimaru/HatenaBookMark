@@ -25,6 +25,11 @@
         z-index: 1101;
         overflow-y: auto;
         overflow-x: hidden;
+        @media screen and (max-width: 768px) {
+            width: 80%;
+            // height: 100%;
+            // border-radius: 0px;   
+        }
 
         .modal-input {
             width: 100%;

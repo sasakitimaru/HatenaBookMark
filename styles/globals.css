@@ -15,7 +15,7 @@
 
 a {
   text-decoration: none;
-  color: #222;
+  color: inherit;
 }
 
 html {
@@ -39,4 +39,8 @@ body {
 
 li {
   list-style: none;
+}
+
+main{
+  color: inherit;
 }

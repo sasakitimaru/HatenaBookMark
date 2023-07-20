@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import Modal from '../Modal/Modal'
 import { AmplifyUser } from '@aws-amplify/ui'
+import { Button } from '@mui/material'
 
 export const ModalContext = createContext<{
   modalVisible: boolean
@@ -17,17 +18,18 @@ export const ModalContext = createContext<{
 
 interface LayoutProps {
   children: ReactNode
+  title?: string
   user: AmplifyUser | undefined
   signOut: (() => void) | undefined
 }
-const Layout: React.FC<LayoutProps> = ({ children, user, signOut }) => {
+const Layout: React.FC<LayoutProps> = ({ children, title, user, signOut }) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [headerHeight, setHeaderHeight] = useState(0)
   // console.log(user)
   return (
     <div style={{ marginTop: headerHeight }}>
       <Head>
-        <title>tmp</title>
+        <title>{title? title : 'ブックマーク'}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
@@ -39,7 +41,6 @@ const Layout: React.FC<LayoutProps> = ({ children, user, signOut }) => {
       <div className={styles['layout-container']}>{children}</div>
       <footer className={styles['layout-footer']}>
         <hr />
-        <button onClick={signOut}>Sign Out</button>
       </footer>
     </div>
   )
