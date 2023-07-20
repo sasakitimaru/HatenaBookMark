@@ -1,0 +1,96 @@
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1100;
+
+    .modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #ffffff;
+        width: 720px;
+        // height: 100px;
+        padding: 20px;
+        border-radius: 5px;
+        position: relative;
+        z-index: 1101;
+        overflow-y: auto;
+        overflow-x: hidden;
+        @media screen and (max-width: 768px) {
+            width: 80%;
+            // height: 100%;
+            // border-radius: 0px;   
+        }
+
+        .modal-input {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            padding: 0px 10px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            outline: none;
+        }
+
+        .modal-button {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            padding: 0px 10px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                background-color: #000000;
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+.modal-check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1110;
+
+    .modal-check-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        height: 150px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        border: 2px solid black;
+
+        .modal-check-icon {
+            width: 100px;
+            height: 100px;
+
+        }
+    }
+}
