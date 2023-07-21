@@ -13,7 +13,7 @@ const Article: React.FC<ArticleProps> = ({ link, title, liked }) => {
         // <Card className={styles['article-container']}>
         <div className={styles['article-container']}>
             <div className={styles['article-title']}>
-                <Link href={link}>
+                <Link href={`/articles/${title}`}>
                     {title}
                 </Link>
             </div>
