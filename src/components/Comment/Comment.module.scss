@@ -1,0 +1,35 @@
+.comment-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+
+    .comment-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        width: 100%;
+
+        .comment-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 620px;
+
+            @media screen and (max-width: 768px) {
+                width: 80%;
+            }
+        }
+    }
+
+    .comment-hr{
+        width: 620px;
+
+        @media screen and (max-width: 768px) {
+            width: 80%;           
+        }
+    }
+}

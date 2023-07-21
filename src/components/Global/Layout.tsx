@@ -19,8 +19,8 @@ export const ModalContext = createContext<{
 interface LayoutProps {
   children: ReactNode
   title?: string
-  user: AmplifyUser | undefined
-  signOut: (() => void) | undefined
+  user?: AmplifyUser | undefined
+  signOut?: (() => void) | undefined
 }
 const Layout: React.FC<LayoutProps> = ({ children, title, user, signOut }) => {
   const [modalVisible, setModalVisible] = useState(false)
