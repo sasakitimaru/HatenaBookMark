@@ -3,10 +3,10 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 import { SearchGPT } from "@/lib/PublicAPI";
-import { Alert, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import ResultOfSearch from "../ResultOfSearch/ResultOfSearch";
 import styles from "./Search.module.scss";
-import { relative } from "path";
+
 const Search = ({
   setAlertVisible,
 }: {
