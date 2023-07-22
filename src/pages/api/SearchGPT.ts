@@ -1,6 +1,10 @@
 import { API, graphqlOperation } from "aws-amplify";
 import { listArticles } from "@/graphql/queries";
+import { Amplify } from "aws-amplify";
+import awsconfig from "@/aws-exports";
 import axios from "axios";
+
+Amplify.configure({ ...awsconfig, ssr: true });
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (
