@@ -59,7 +59,6 @@ interface ArticleProps {
   comments: Comment[];
 }
 const Article: React.FC<ArticleProps> = ({ article, comments }) => {
-  console.log(comments);
   return (
     <Authenticator
     loginMechanisms={["email"]}

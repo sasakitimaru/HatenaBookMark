@@ -1,4 +1,5 @@
 $small: 600px;
+
 .header-container {
     position: fixed;
     top: 0;
@@ -13,29 +14,24 @@ $small: 600px;
     .brand {
         font-weight: bold;
         font-size: 20px;
+
+        @media screen and (max-width: 600px) {
+            font-size: 16px;
+            
+        }
     }
 
     .site-header__wrapper {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        // margin: 0 20px;
 
-        // @media (min-width: $small) {
-        //     display: flex;
-        //     justify-content: space-between;
-        //     align-items: center;
-        //     padding-top: 0;
-        //     padding-bottom: 0;
-        // }
-    }
-
-    @media (min-width: 600px) {
-        .site-header__wrapper {
+        @media (min-width: 600px) {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin: 0 20px;
             padding-top: 0;
             padding-bottom: 0;
         }

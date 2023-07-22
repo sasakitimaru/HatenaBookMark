@@ -6,7 +6,6 @@ import { Comment } from "@/API";
 const Comment = ({ comments }: { comments: Comment[] }) => {
   const currentWindowWidth = window.innerWidth;
   const width = currentWindowWidth > 768 ? "620px" : "320px";
-  console.log(comments);
   return (
     <div className={styles["comment-container"]}>
       {comments.length > 0 &&

@@ -4,11 +4,15 @@ import Link from "next/link";
 import { Button } from "@mui/material";
 import Drawer from "../Drawer/Drawer";
 import MenuOpenSharpIcon from "@mui/icons-material/MenuOpenSharp";
-import { inherits } from "util";
-
+import Search from "../Search/Search";
+interface HeaderProps {
+  setHeaderHeight: (height: number) => void;
+  setAlertVisible: React.Dispatch<React.SetStateAction<boolean>>
+}
 type Anchor = "left" | "right" | "top" | "bottom";
-const Header: React.FC<{ setHeaderHeight: (height: number) => void }> = ({
+const Header: React.FC<HeaderProps> = ({
   setHeaderHeight,
+  setAlertVisible
 }) => {
   const headerRef = React.useRef<HTMLElement>(null);
   const [lastScrollTop, setLastScrollTop] = useState(0);
@@ -68,6 +72,7 @@ const Header: React.FC<{ setHeaderHeight: (height: number) => void }> = ({
         <Link href="/" className={styles["brand"]}>
           Home
         </Link>
+        <Search setAlertVisible={setAlertVisible}/>
         <nav className={styles["nav"]}>
           <ul className={styles["nav__wrapper"]}>
             <li className={styles["nav__item"]}>
