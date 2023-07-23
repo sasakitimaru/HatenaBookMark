@@ -3,7 +3,9 @@ import { createArticle, updateArticle } from "@/graphql/mutations";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import Observable from "zen-observable-ts";
 import { getArticle } from "@/graphql/queries";
-
+import awsExports from "@/aws-exports";
+import { Amplify } from "aws-amplify";
+Amplify.configure({ ...awsExports, ssr: true });
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (
   req: { body: any },
