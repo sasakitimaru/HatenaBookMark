@@ -1,11 +1,11 @@
 #this is test
 
 
-'''js
+```js
 const test = () => {
   console.log("test")
   }
-'''
+```
 
 
 | Head | Head | Head |
